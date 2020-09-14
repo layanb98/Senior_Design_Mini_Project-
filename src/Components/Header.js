@@ -5,8 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import SignUp from './login.js'
-//import MenuIcon from '@material-ui/icons/Menu';
+import SignIn from './SignIn'
+import ReactDOM from 'react-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,11 @@ const ButtonAppBar = () => {
           </IconButton>
           <Typography variant="h6" className={classes.title}>
           </Typography>
-          <Button onClick={() => { alert('getting there') }} color="inherit">Login</Button>
+          <Button 
+          id="execute-request-button"
+          onClick = {() => {ReactDOM.render(<SignIn />, document.getElementById('root'))}}
+          color="inherit">
+          Login</Button>
         </Toolbar>
       </AppBar>
     </div>

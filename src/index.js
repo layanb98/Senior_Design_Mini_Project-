@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import * as firebase from 'firebase';
+import {DB_CONFIG} from './Components/Config.js';
+import {db_init} from './Components/DatabaseManager';
 
+
+
+db_init(DB_CONFIG);
 ReactDOM.render(
   <React.StrictMode>
     <App />
