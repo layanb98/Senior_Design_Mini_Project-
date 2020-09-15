@@ -119,7 +119,7 @@ serviceWorker.unregister();*/
 //     answers:[{text:'Yes', correct: true}, {text:'No', correct:false} ]
 //   },
 //   {
-//     question:"Severe fatigue:",
+//     question:"Severe Fatigue:",
 //     answers:[{text:'Yes', correct: true}, {text:'No', correct:false} ]
 //   },
 //   {
@@ -127,7 +127,7 @@ serviceWorker.unregister();*/
 //     answers:[{text:'Yes', correct: true}, {text:'No', correct:false} ]
 //   },
 //   {
-//     question:"Have you tested Covid-19 positive in the last 90 days?:",
+//     question:"Have you tested Covid-19 Positive in the last 90 days?:",
 //     answers:[{text:'Yes', correct: true}, {text:'No', correct:false} ]
 //   }
 // ]
@@ -154,9 +154,9 @@ serviceWorker.unregister();*/
             SoreThroat: "",
             Smell_Taste: "",
             Vomiting:"",
-            fatigue:"",
-            muscleAche: "",
-            positive: "",
+            Fatigue:"",
+            MuscleAche: "",
+            Positive: "",
         }
         this.SubmitCovidAnswers = this.SubmitCovidAnswers.bind(this);
       }
@@ -203,30 +203,54 @@ serviceWorker.unregister();*/
         });
         console.log(event.currentTarget.value);
     }
-    Updatefatigue = (event) => {
+    UpdateFatigue = (event) => {
       event.preventDefault()
         this.setState({
-            fatigue: event.currentTarget.value
+            Fatigue: event.currentTarget.value
         });
         console.log(event.currentTarget.value);
     }
-    UpdatemuscleAche = (event) => {
+    UpdateMuscleAche = (event) => {
       event.preventDefault()
         this.setState({
-            muscleAche: event.currentTarget.value
+            MuscleAche: event.currentTarget.value
         });
         console.log(event.currentTarget.value);
     }
-    Updatepositive = (event) => {
+    UpdatePositive = (event) => {
       event.preventDefault()
         this.setState({
-            positive: event.currentTarget.value
+            Positive: event.currentTarget.value
         });
         console.log(event.currentTarget.value);
     }
     SubmitCovidAnswers =() =>{
-      db_CovidAnswers(this.state.Fever,this.state.Coughing,this.state.Breathing,this.state.SoreThroat,this.state.Smell_Taste,this.state.fatigue,this.state.muscleAche,this.state.positive)
+
+      var docInfo ={
+        Coughing: this.state.Coughing,
+        Breathing: this.state.Breathing,
+        Fever: this.state.Fever,
+        Smell_Taste: this.state.Smell_Taste,
+        SoreThroat: this.state.SoreThroat,
+        Vomiting: this.state.Vomiting,
+        Fatigue: this.state.Fatigue,
+        MuscleAche: this.state.MuscleAche,
+        Positive: this.state.Positive
+      };
       console.log("calling submit covid answers");
+      // db_CovidAnswers(this.state.Fever,this.state.Coughing,this.state.Breathing,this.state.SoreThroat,this.state.Smell_Taste,this.state.Fatigue,this.state.MuscleAche,this.state.Positive)
+      // //console.log("calling submit covid answers");
+      console.log("first Covid app");
+    //const db = firebase.firestore();
+    var user = firebase.auth().currentUser;
+    const db = firebase.firestore();
+    console.log("called firebase functions");
+    db.collection("CovidAnswers").doc(user.email).set(docInfo).then(function() {
+        console.log("Document successfully written!");
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
     }
     // SubmitCovidAnswers = () => {
     //   console.log("first Covid app");
@@ -240,9 +264,9 @@ serviceWorker.unregister();*/
     //         SoreThroat: this.state.SoreThroat,
     //         Smell_Taste: this.state.Smell_Taste,
     //         Vomiting:this.state.Vomiting,
-    //         fatigue:this.state.fatigue,
-    //         muscleAche: this.state.muscleAche,
-    //         positive: this.state.positive
+    //         Fatigue:this.state.Fatigue,
+    //         MuscleAche: this.state.MuscleAche,
+    //         Positive: this.state.Positive
     //   });  
     //   console.log("after Covid app");
     //   // firebase.auth().onAuthStateChanged(function(user) {
@@ -250,7 +274,7 @@ serviceWorker.unregister();*/
     //     // var user = firebase.auth().currentUser;
     //     // console.log(user);
     //     //   // User is signed in.
-    //     //   db_CovidAnswers(user, '/s1qdstBkwhzCIcyLiZ0a',this.state.Fever, this.state.Coughing, this.state.Breathing, this.state.SoreThroat, this.state.Smell_Taste, this.state.Vomiting, this.state.fatigue, this.state.muscleAche, this.state.positive) ;
+    //     //   db_CovidAnswers(user, '/s1qdstBkwhzCIcyLiZ0a',this.state.Fever, this.state.Coughing, this.state.Breathing, this.state.SoreThroat, this.state.Smell_Taste, this.state.Vomiting, this.state.Fatigue, this.state.MuscleAche, this.state.Positive) ;
     
     //     //} //else{
     //     //   // No user is signed in.
@@ -377,7 +401,7 @@ serviceWorker.unregister();*/
                         No</Button>
                    </ButtonGroup>
                    <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
-                   Severe fatigue:
+                   Severe Fatigue:
                   </Typography>
                   <ButtonGroup disableElevation variant="contained" color="primary">
                     <Button 
@@ -385,14 +409,14 @@ serviceWorker.unregister();*/
                       variant="contained"
                       color="primary"
                       value= "Yes"
-                      onClick =  {this.Updatefatigue.bind("Yes")}>
+                      onClick =  {this.UpdateFatigue.bind("Yes")}>
                         Yes</Button>
                     <Button
                       type="submit"
                       variant="contained"
                       color="primary"
                       value= "No"
-                      onClick = {this.Updatefatigue.bind("No")}>
+                      onClick = {this.UpdateFatigue.bind("No")}>
                         No</Button>
                    </ButtonGroup>
                    <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
@@ -404,18 +428,18 @@ serviceWorker.unregister();*/
                       variant="contained"
                       color="primary"
                       value= "Yes"
-                      onClick =  {this.UpdatemuscleAche.bind("Yes")}>
+                      onClick =  {this.UpdateMuscleAche.bind("Yes")}>
                         Yes</Button>
                     <Button
                       type="submit"
                       variant="contained"
                       color="primary"
                       value= "No"
-                      onClick = {this.UpdatemuscleAche.bind("No")}>
+                      onClick = {this.UpdateMuscleAche.bind("No")}>
                         No</Button>
                    </ButtonGroup>
                    <Typography variant="h5" style={{textAlign:"center", margin:"auto"}}>
-                    Have you tested Covid-19 positive in the last 90 days?:
+                    Have you tested Covid-19 Positive in the last 90 days?:
                   </Typography>
                   <ButtonGroup disableElevation variant="contained" color="primary">
                     <Button 
@@ -423,14 +447,14 @@ serviceWorker.unregister();*/
                       variant="contained"
                       color="primary"
                       value= "Yes"
-                      onClick = {this.Updatepositive.bind("Yes")}>
+                      onClick = {this.UpdatePositive.bind("Yes")}>
                         Yes</Button>
                     <Button
                       type="submit"
                       variant="contained"
                       color="primary"
                       value= "No"
-                      onClick = {this.Updatepositive.bind("No")}>
+                      onClick = {this.UpdatePositive.bind("No")}>
                         No</Button>
                    </ButtonGroup>
 
