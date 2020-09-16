@@ -14,7 +14,9 @@ import Container from '@material-ui/core/Container';
 import App from '../App';
 import ReactDOM from 'react-dom';
 import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
-import {db_createUserWithEmailAndPassword, db_signInWithEmailAndPassword, db_Logout, db_signInWithGoogle} from './DatabaseManager';
+import Questions from './questions.js';
+import ButtonAppBar from './Header2'
+import { db_signInWithEmailAndPassword, db_signInWithGoogle} from './DatabaseManager';
 
 function validateEmail (email){
     var atpos = email.indexOf("@");
@@ -33,16 +35,28 @@ class SignIn extends React.Component {
             password:""
         }
     }
-    signIn = () =>{
+    login = () =>{
+        console.log("we get in sign in");
         var msg = this.refs.error_header;
-        if(!validateEmail(this.state.email))
+        if(!validateEmail(this.state.email)){
+            console.log("invalid email");
             msg.innerHTML = "Invalid email address"
+            
+        }
         else{
-            msg.innerHTML = ""
+            console.log("right before db function");
+            //msg.innerHTML = ""
             db_signInWithEmailAndPassword(this.state.email, this.state.password).then(function(res){
-                if(res.error)
-                    msg.innerHTML = res.error.message;
+                if(res.error){
+                    alert('wrong Password');
+                    //msg.innerHTML = res.error.message;
+                    console.log("password is wrong");
+                }
+                else{
+                    console.log("password is right");
+                    ReactDOM.render(<Questions />, document.getElementById('root'));}
             });
+            
         }
 
     }
@@ -58,15 +72,25 @@ class SignIn extends React.Component {
     signInWithGoogle = () =>{
         var msg = this.refs.error_header;
         //msg.innerHTML = "";
+        
         db_signInWithGoogle().then(function(res){
-            if(res.error)
+            if(res.error){
                 msg.innerHTML = res.error;
+                console.log("something went wrong");
+            }
+            else{
+                console.log("Signing in with google");
+                ReactDOM.render(<Questions />, document.getElementById('root'));
+            }
         });
+        
     }
 //   const classes = useStyles();
   render(){
   return (
-    <Container component="main" maxWidth="xs" style={{ maxWidth: "100%", padding: "10%"}}>
+    <div><ButtonAppBar/>
+    <Container component="main" maxWidth="xs" style={{ maxWidth: "60%", padding: "10%"}}>
+      
       <CssBaseline />
       <div >
         <Avatar spacing ="1" style={{textAlign:"center", margin:"auto", marginTop: "20" , backgroundColor: "red"}}>
@@ -101,7 +125,7 @@ class SignIn extends React.Component {
             onChange = { this.updatePassword}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox value="remember" />}
             label="Remember me"
           />
           <Button
@@ -109,17 +133,17 @@ class SignIn extends React.Component {
             fullWidth
             variant="contained"
             color="primary"
-            onClick = {this.signIn}
+            onClick = {this.login}
             //className={classes.submit}
           >
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
               <Link onClick = {this.signup}  variant="body2">
                 {"Don't have an account? Sign Up"}
@@ -135,7 +159,7 @@ class SignIn extends React.Component {
         height = "50"
         // spacing = "50"
         onClick={ this.signInWithGoogle }
-        primary={true}
+        //primary={true}
         // fullWidth ={true}
         style={{textAlign:"center", margin:"auto"}} >
         </img>
@@ -143,6 +167,7 @@ class SignIn extends React.Component {
     </Typography>
       </Box>
     </Container>
+    </div>
   );
   }
 }

@@ -1,20 +1,18 @@
 import React , { Component } from 'react';
 import './App.css';
-import ButtonAppBar from './Components/Header'
 import SignUp from './Components/SignUp'
-import * as firebase from 'firebase';
+import Questions from './Components/questions'
+
 
 class App extends Component{
   constructor(){
     super();
     this.state ={};
   }
-
   render(){
     return (
       <div>
-        <ButtonAppBar/>
-        <SignUp/>
+        { !this.state.user ? <SignUp/> : <Questions currentUser={this.state.user}/> }
       </div>
     );
   } 

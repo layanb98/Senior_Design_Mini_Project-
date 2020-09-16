@@ -10,30 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import App from '../App.js';
 import ReactDOM from 'react-dom';
-import {db_createUserWithEmailAndPassword, db_signInWithEmailAndPassword, db_Logout} from './DatabaseManager'
+import ButtonAppBar from './Header'
+import {db_createUserWithEmailAndPassword} from './DatabaseManager'
 import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
-import * as firebase from 'firebase';
-import ButtonAppBar from './Header';
+import Questions from './questions.js';
 
-// const useStyles = makeStyles((theme) => ({
-//         paper: {
-//           marginTop: theme.spacing(8),
-//           display: 'flex',
-//           flexDirection: 'column',
-//           alignItems: 'center',
-//         },
-//         avatar: {
-//           margin: theme.spacing(1),
-//           backgroundColor: theme.palette.secondary.main,
-//         },
-//         form: {
-//           width: '100%', // Fix IE 11 issue.
-//           marginTop: theme.spacing(3),
-//         },
-//         submit: {
-//           margin: theme.spacing(3, 0, 2),
-//         },
-//       }));
 
 function Copyright() {
   return (
@@ -43,7 +24,7 @@ function Copyright() {
         height = "50"
         // spacing = "50"
         onClick={() => { alert('getting there') }}
-        primary={true}
+        //primary={true}
         // fullWidth ={true}
         style={{textAlign:"center", margin:"auto"}} >
         </img>
@@ -104,12 +85,12 @@ class SignUp extends Component{
             db_createUserWithEmailAndPassword(this.state.email, this.state.password, this.state.firstName, this.state.lastName)
             .then(function(res) {
                 if(res.error){
-                    msg.innerHTML = res.error.message;
+                    //msg.innerHTML = res.error.message;
                     console.log("we have an error");
                 }
-                else ReactDOM.render(<ButtonAppBar />, document.getElementById('root'));
+                else ReactDOM.render(<Questions />, document.getElementById('root'));
             });
-            ReactDOM.render(<ButtonAppBar />, document.getElementById('root'));
+            ReactDOM.render(<Questions />, document.getElementById('root'));
         }
         
         
@@ -144,13 +125,11 @@ class SignUp extends Component{
     //const classes = useStyles();
   return (
         
-    // <div className={classes.paper}>
-    // <Avatar className={classes.avatar}>
-    //   <LockOutlinedIcon />
-    // </Avatar>
+    
     <div>
+      <ButtonAppBar/>
         {/* <makeStyles muitheme= {useStyles}/> */}
-        <Container component="main" maxWidth="xs" style={{ maxWidth: "100%", padding: "10%"}}>
+        <Container component="main" maxWidth="xs" style={{ maxWidth: "60%", padding: "10%"}}>
         <CssBaseline />
         
         <Avatar spacing = "1" style={{textAlign:"center", margin:"auto" , backgroundColor: "red"}} >
@@ -227,7 +206,7 @@ class SignUp extends Component{
             variant="contained"
             color="primary"
             onClick = {this.NewAccount}
-            primary = {true}
+           // primary = {true}
             label ="Submit"
             // className={classes.submit}
           >
