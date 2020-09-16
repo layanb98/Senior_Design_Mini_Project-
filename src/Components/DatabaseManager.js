@@ -92,26 +92,40 @@ function db_Logout(){
     });    
 }
 function db_signInWithGoogle(){
+    console.log("first thing");
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-    return firebase.auth().getRedirectResult().then(function(result) {
+    
+    //firebase.auth().signInWithRedirect(provider);
+    console.log("1");
+    return firebase.auth().signInWithPopup(provider).then(function(result) {
+        console.log("2");
         var user = result.user;
-        if(!user) return {error: "Null Error"}; //TODO no error needed
-
+        console.log(user.uid);
+        if(!user) {
+        console.log("2.5");
+        return { error: "Null Error"};
+        }   //TODO no error needed
+        console.log("3");
         var fname = user.displayName.split(" ", 1)[0];
         var lname = user.displayName.substring(fname.length+1);
         var email = user.email;
         var token = result.credential.accessToken;
 
+        db_writeUserData(user.uid, fname, lname, email);
+        console.log("4");
+        db_addUserEntry(user.uid, "Googletoken", token);
+        console.log("5");
+        return{};
         //get the existing account if possible
-        var previousAccount;
-        return db_getUserData(user.user.uid).then(function (db_user){
-            previousAccount = db_user;
-            db_writeUserData(user.user.uid, fname, lname, email);
-            db_addUserEntry(user.user.uid, "Googletoken", token);
-            db_addUserEntry(user.user.uid, "profile_picture", user.photoURL);
-            return{};
-        });
+        //var previousAccount;
+        // return db_getUserData(user.user.uid).then(function (db_user){
+        //     previousAccount = db_user;
+        //     db_writeUserData(user.user.uid, fname, lname, email);
+        //     db_addUserEntry(user.user.uid, "Googletoken", token);
+        //     //db_addUserEntry(user.user.uid, "profile_picture", user.photoURL);
+        //     return{};
+        // });
+        //console.log("should be redirected to the page now ");
     }).catch(function(error) {
     return {error: error.message};
     });

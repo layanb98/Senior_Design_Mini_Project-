@@ -99,7 +99,8 @@ import ButtonAppBar from './Header3'
         MuscleAche: this.state.MuscleAche,
         Positive: this.state.Positive
       };
-      var userId = firebase.auth().currentUser.uid;
+    var userId = firebase.auth().currentUser.uid;
+    console.log("user" + userId);
     
     var newPostKey = firebase.database().ref().child('questionAns').push().key;
     var updates = {};

@@ -5,13 +5,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import SignIn from './SignIn'
+import SignUp from './SignUp';
 import ReactDOM from 'react-dom';
-import Info from './Info';
+import {db_Logout} from './DatabaseManager';
+import App from '../App';
 
-function info(){
-  ReactDOM.render(<Info />, document.getElementById('root'));
-}
+function Back(){
+    ReactDOM.render(<App />, document.getElementById('root'));
+  }
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
+// function Logout(){
+//     db_Logout();
+//     ReactDOM.render(<SignUp />, document.getElementById('root'));
+// }
 
 const ButtonAppBar = () => {
     const classes = useStyles();
@@ -31,16 +36,16 @@ const ButtonAppBar = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick ={info}>
-            Info
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick ={Back}>
+            Back
           </IconButton>
           <Typography variant="h6" className={classes.title}>
           </Typography>
-          <Button 
+          {/* <Button 
           id="execute-request-button"
-          onClick = {() => {ReactDOM.render(<SignIn />, document.getElementById('root'))}}
+          onClick = {Logout}
           color="inherit">
-          Login</Button>
+          Sign Out</Button> */}
         </Toolbar>
       </AppBar>
     </div>
