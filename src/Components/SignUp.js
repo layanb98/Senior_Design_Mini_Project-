@@ -14,6 +14,7 @@ import ButtonAppBar from './Header'
 import {db_createUserWithEmailAndPassword} from './DatabaseManager'
 import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
 import Questions from './questions.js';
+import Info from './Info';
 
 
 function Copyright() {
@@ -90,7 +91,7 @@ class SignUp extends Component{
                 }
                 else ReactDOM.render(<Questions />, document.getElementById('root'));
             });
-            ReactDOM.render(<Questions />, document.getElementById('root'));
+            // ReactDOM.render(<Questions />, document.getElementById('root'));
         }
         
         
@@ -141,7 +142,7 @@ class SignUp extends Component{
           Sign up
         </Typography>
         </Grid>
-        <form noValidate>
+        <div noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -216,11 +217,11 @@ class SignUp extends Component{
             <Grid item>
             </Grid>
           </Grid>
-        </form>
+        </div>
 
       
       <Box mt={5}>
-        <Copyright />
+        {/* <Copyright /> */}
       </Box>
     </Container>
     </div>

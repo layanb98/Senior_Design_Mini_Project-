@@ -16,6 +16,7 @@ import ReactDOM from 'react-dom';
 import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
 import Questions from './questions.js';
 import ButtonAppBar from './Header2'
+import SignUp from './SignUp';
 import { db_signInWithEmailAndPassword, db_signInWithGoogle} from './DatabaseManager';
 
 function validateEmail (email){
@@ -40,7 +41,8 @@ class SignIn extends React.Component {
         var msg = this.refs.error_header;
         if(!validateEmail(this.state.email)){
             console.log("invalid email");
-            msg.innerHTML = "Invalid email address"
+            alert("missing field");
+            // msg.innerHTML = "Invalid email address"
             
         }
         else{
@@ -61,7 +63,7 @@ class SignIn extends React.Component {
 
     }
     signup = () =>{
-        ReactDOM.render(<App/>, document.getElementById('root'));
+        ReactDOM.render(<SignUp/>, document.getElementById('root'));
     }
     updatePassword = (event) => {
         this.setState({ password: event.target.value });
@@ -70,17 +72,22 @@ class SignIn extends React.Component {
         this.setState({ email: event.target.value });
     }
     signInWithGoogle = () =>{
-        var msg = this.refs.error_header;
+        //var msg = this.refs.error_header;
         //msg.innerHTML = "";
+      console.log("just called sign In with google from Sign in ");
+
         
-        db_signInWithGoogle().then(function(res){
+      db_signInWithGoogle().then(function(res){
+          //console.log(res.user.uid);
             if(res.error){
-                msg.innerHTML = res.error;
+                //msg.innerHTML = res.error;
+                
+                console.log(res.error);
                 console.log("something went wrong");
             }
             else{
                 console.log("Signing in with google");
-                ReactDOM.render(<Questions />, document.getElementById('root'));
+                 ReactDOM.render(<Questions />, document.getElementById('root'));
             }
         });
         
@@ -99,7 +106,7 @@ class SignIn extends React.Component {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form >
+        <div >
           <TextField
             variant="outlined"
             margin="normal"
@@ -150,7 +157,7 @@ class SignIn extends React.Component {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </div>
       </div>
       <Box mt={8}>
     <Typography variant="body1" color="textSecondary" align="center" spacing = "20">
