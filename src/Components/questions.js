@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
-import { Container } from '@material-ui/core';
+import { Container, recomposeColor } from '@material-ui/core';
 import * as firebase from 'firebase';
 import ButtonAppBar from './Header3'
 
@@ -19,6 +19,7 @@ import ButtonAppBar from './Header3'
             Fatigue:"",
             MuscleAche: "",
             Positive: "",
+            color:"primary"
         }
         this.SubmitCovidAnswers = this.SubmitCovidAnswers.bind(this);
       }
@@ -26,63 +27,72 @@ import ButtonAppBar from './Header3'
     UpdateFever = (event) => {
       event.preventDefault()
         this.setState({
-            Fever: event.currentTarget.value
+            Fever: event.currentTarget.value,
+            // color: "secondary" 
         });
         console.log(event.currentTarget.value);
     }
     UpdateCoughing = (event) => {
       event.preventDefault()
         this.setState({
-            Coughing: event.currentTarget.value
+            Coughing: event.currentTarget.value,
+            // color: "secondary" 
         });
         console.log(event.currentTarget.value);
     }
     UpdateBreathing = (event) => {
       event.preventDefault()
       this.setState({
-          Breathing: event.currentTarget.value
+          Breathing: event.currentTarget.value,
+          // color: "secondary" 
       });
       console.log(event.currentTarget.value);
     }
     UpdateSoreThroat = (event) => {
       event.preventDefault()
         this.setState({
-            SoreThroat: event.currentTarget.value
+            SoreThroat: event.currentTarget.value,
+            // color: "secondary" 
         });
         console.log(event.currentTarget.value);
     }
     UpdateSmell_Taste = (event) => {
       event.preventDefault()
         this.setState({
-            Smell_Taste: event.currentTarget.value
+            Smell_Taste: event.currentTarget.value,
+            // color: "secondary"
         });
         console.log(event.currentTarget.value);
     }
     UpdateVomiting = (event) => {
       event.preventDefault()
         this.setState({
-            Vomiting: event.currentTarget.value
+            Vomiting: event.currentTarget.value,
+            // color: "secondary"
         });
         console.log(event.currentTarget.value);
     }
     UpdateFatigue = (event) => {
       event.preventDefault()
         this.setState({
-            Fatigue: event.currentTarget.value
+            Fatigue: event.currentTarget.value,
+            // color: "secondary"
         });
         console.log(event.currentTarget.value);
     }
     UpdateMuscleAche = (event) => {
       event.preventDefault()
         this.setState({
-            MuscleAche: event.currentTarget.value
+            MuscleAche: event.currentTarget.value,
+            // color: "secondary"
         });
         console.log(event.currentTarget.value);
     }
     UpdatePositive = (event) => {
       event.preventDefault()
         this.setState({
-            Positive: event.currentTarget.value
+            Positive: event.currentTarget.value,
+            // color: "secondary"
         });
         console.log(event.currentTarget.value);
     }
@@ -114,15 +124,19 @@ import ButtonAppBar from './Header3'
         return(
             <div>  
               <ButtonAppBar/>
-                <Container maxWidth = "sm">
-                  <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+              
+              <Container component="main" maxWidth="xs" style={{ maxWidth: "60%", padding: "3%"}}>
+              <Typography  variant="h3" style={{textAlign:"center", margin:"auto"}}>
+                   COVID-19 Questionarre
+                  </Typography>
+                  <Typography  variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
                    Fever of 100F, or feeling hot with chills:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary" style={{textAlign:"center", margin:"auto"}}>
-                    <Button 
+                  <ButtonGroup disableElevation variant="contained" style={{textAlign:"center", margin:"auto", padding: "3%"}} fullWidth>
+                    <Button
                       type="submit"
                       variant="contained"
-                      color="primary"
+                      color={this.state.color}
                       value= "Yes"
                       onClick = {this.UpdateFever.bind("Yes")}>
                         Yes</Button>
@@ -133,11 +147,11 @@ import ButtonAppBar from './Header3'
                       value= "No"
                       onClick =  {this.UpdateFever.bind("No")}>
                         No</Button>
-                   </ButtonGroup>
-                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   </ButtonGroup >
+                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto" , padding: "3%"}}>
                    Coughing unrelated to chronic condition:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto" , padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -153,10 +167,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateCoughing.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto" , padding: "3%"}} >
                    Difficulty breahting:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto" , padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -172,10 +186,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateBreathing.bind("No")}>
                         No</Button>
                   </ButtonGroup>
-                  <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                  <Typography  variant="h5" style={{textAlign:"center", margin:"auto" , padding: "3%"}}>
                   Do you have a Sore Throat:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto" , padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -191,10 +205,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateSoreThroat.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
                    New loss of smell and/or taste:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto", padding: "3%"}}fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -210,10 +224,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateSmell_Taste.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
                    Are you Vomiting:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto", padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -229,10 +243,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateVomiting.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
                    Severe Fatigue:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto", padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -248,10 +262,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateFatigue.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
                    Severe muscle aches:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto", padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -267,10 +281,10 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdateMuscleAche.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-                   <Typography variant="h5" style={{textAlign:"center", margin:"auto"}}>
+                   <Typography variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
                     Have you tested Covid-19 Positive in the last 90 days?:
                   </Typography>
-                  <ButtonGroup disableElevation variant="contained" color="primary">
+                  <ButtonGroup disableElevation variant="contained"  style={{textAlign:"center", margin:"auto", padding: "3%"}} fullWidth>
                     <Button 
                       type="submit"
                       variant="contained"
@@ -286,8 +300,9 @@ import ButtonAppBar from './Header3'
                       onClick = {this.UpdatePositive.bind("No")}>
                         No</Button>
                    </ButtonGroup>
-
+                    
                   <Button
+                    style={{textAlign:"center", margin:"auto", padding: "2%"}}
                     type="submit"
                     fullWidth
                     variant="contained"
