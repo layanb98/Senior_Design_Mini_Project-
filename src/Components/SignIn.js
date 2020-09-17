@@ -11,7 +11,7 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import App from '../App';
+//import App from '../App';
 import ReactDOM from 'react-dom';
 import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
 import Questions from './questions.js';
@@ -37,25 +37,25 @@ class SignIn extends React.Component {
         }
     }
     login = () =>{
-        console.log("we get in sign in");
-        var msg = this.refs.error_header;
+        //console.log("we get in sign in");
+        //var msg = this.refs.error_header;
         if(!validateEmail(this.state.email)){
-            console.log("invalid email");
+            //console.log("invalid email");
             alert("missing field");
             // msg.innerHTML = "Invalid email address"
             
         }
         else{
-            console.log("right before db function");
+            //console.log("right before db function");
             //msg.innerHTML = ""
             db_signInWithEmailAndPassword(this.state.email, this.state.password).then(function(res){
                 if(res.error){
                     alert('wrong Password');
                     //msg.innerHTML = res.error.message;
-                    console.log("password is wrong");
+                    //console.log("password is wrong");
                 }
                 else{
-                    console.log("password is right");
+                    //console.log("password is right");
                     ReactDOM.render(<Questions />, document.getElementById('root'));}
             });
             
@@ -74,7 +74,7 @@ class SignIn extends React.Component {
     signInWithGoogle = () =>{
         //var msg = this.refs.error_header;
         //msg.innerHTML = "";
-      console.log("just called sign In with google from Sign in ");
+      //console.log("just called sign In with google from Sign in ");
 
         
       db_signInWithGoogle().then(function(res){
@@ -83,10 +83,10 @@ class SignIn extends React.Component {
                 //msg.innerHTML = res.error;
                 
                 console.log(res.error);
-                console.log("something went wrong");
+                //console.log("something went wrong");
             }
             else{
-                console.log("Signing in with google");
+                //console.log("Signing in with google");
                  ReactDOM.render(<Questions />, document.getElementById('root'));
             }
         });

@@ -12,27 +12,27 @@ import App from '../App.js';
 import ReactDOM from 'react-dom';
 import ButtonAppBar from './Header'
 import {db_createUserWithEmailAndPassword} from './DatabaseManager'
-import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
+//import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
 import Questions from './questions.js';
-import Info from './Info';
+//import Info from './Info';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body1" color="textSecondary" align="center" spacing = "20">
-      <img 
-        src ={Logo}
-        height = "50"
-        // spacing = "50"
-        onClick={() => { alert('getting there') }}
-        //primary={true}
-        // fullWidth ={true}
-        style={{textAlign:"center", margin:"auto"}} >
-        </img>
+// function Copyright() {
+//   return (
+//     <Typography variant="body1" color="textSecondary" align="center" spacing = "20">
+//       <img 
+//         src ={Logo}
+//         height = "50"
+//         // spacing = "50"
+//         onClick={() => { alert('getting there') }}
+//         //primary={true}
+//         // fullWidth ={true}
+//         style={{textAlign:"center", margin:"auto"}} >
+//         </img>
       
-    </Typography>
-  );
-}
+//     </Typography>
+//   );
+// }
 
 
 function validateEmail (email){
@@ -40,7 +40,7 @@ function validateEmail (email){
     var dotpos = email.lastIndexOf(".");
     
     if(atpos <1 || dotpos < atpos+2 || dotpos+2 >=email.length){
-        console.log("validate email");
+        // console.log("validate email");
         return false;
         
     }
@@ -66,11 +66,11 @@ class SignUp extends Component{
 
     NewAccount = () => {
         var msg = this.refs.error_header;
-        console.log("Info coming into NewAccount");
-        console.log(this.state.firstName);
-        console.log(this.state.lastName);
-        console.log(this.state.email);
-        console.log(this.state.password);
+        // console.log("Info coming into NewAccount");
+        // console.log(this.state.firstName);
+        // console.log(this.state.lastName);
+        // console.log(this.state.email);
+        // console.log(this.state.password);
         
         if(this.state.firstName === "")
             msg.innerHTML = "Invalid first name"
@@ -81,7 +81,7 @@ class SignUp extends Component{
         else if(this.state.password === "")
             msg.innerHTML = "Invalid password"
         else{
-            console.log("in the last else");
+            //console.log("in the last else");
             // msg.innerHTML = "";
             db_createUserWithEmailAndPassword(this.state.email, this.state.password, this.state.firstName, this.state.lastName)
             .then(function(res) {
@@ -100,25 +100,25 @@ class SignUp extends Component{
         this.setState({
             firstName: event.target.value
         });
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
     NewLastName = (event) => {
         this.setState({
             lastName: event.target.value
         });
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
     NewEmail = (event) => {
         this.setState({
             email: event.target.value
         });
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
     NewPassword = (event) => {
         this.setState({
             password: event.target.value
         });
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
     
 

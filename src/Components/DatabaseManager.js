@@ -57,12 +57,12 @@ function db_addUserEntry(userId, name ,value){
     });
 }
 function db_createUserWithEmailAndPassword(email, password, firstName, lastName){
-    console.log("we create the user");
+    //console.log("we create the user");
     const auth = firebase.auth();
     return auth.createUserWithEmailAndPassword(email, password)
     .then(function(user){
-        console.log(user.user.uid);
-        console.log(user.user.email);
+        //console.log(user.user.uid);
+        //console.log(user.user.email);
         db_writeUserData(user.user.uid, firstName, lastName, user.user.email);
         //console.log("2");
         return {};
@@ -92,29 +92,29 @@ function db_Logout(){
     });    
 }
 function db_signInWithGoogle(){
-    console.log("first thing");
+    //console.log("first thing");
     var provider = new firebase.auth.GoogleAuthProvider();
     
     //firebase.auth().signInWithRedirect(provider);
-    console.log("1");
+    //console.log("1");
     return firebase.auth().signInWithPopup(provider).then(function(result) {
-        console.log("2");
+        //console.log("2");
         var user = result.user;
         console.log(user.uid);
         if(!user) {
-        console.log("2.5");
+        //console.log("2.5");
         return { error: "Null Error"};
         }   //TODO no error needed
-        console.log("3");
+        //console.log("3");
         var fname = user.displayName.split(" ", 1)[0];
         var lname = user.displayName.substring(fname.length+1);
         var email = user.email;
         var token = result.credential.accessToken;
 
         db_writeUserData(user.uid, fname, lname, email);
-        console.log("4");
+        //console.log("4");
         db_addUserEntry(user.uid, "Googletoken", token);
-        console.log("5");
+        //console.log("5");
         return{};
         //get the existing account if possible
         //var previousAccount;
