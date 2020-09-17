@@ -12,27 +12,27 @@ import App from '../App.js';
 import ReactDOM from 'react-dom';
 import ButtonAppBar from './Header'
 import {db_createUserWithEmailAndPassword} from './DatabaseManager'
-import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
+//import Logo from './web/2x/btn_google_signin_dark_focus_web@2x.png';
 import Questions from './questions.js';
-import Info from './Info';
+//import Info from './Info';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body1" color="textSecondary" align="center" spacing = "20">
-      <img 
-        src ={Logo}
-        height = "50"
-        // spacing = "50"
-        onClick={() => { alert('getting there') }}
-        //primary={true}
-        // fullWidth ={true}
-        style={{textAlign:"center", margin:"auto"}} >
-        </img>
+// function Copyright() {
+//   return (
+//     <Typography variant="body1" color="textSecondary" align="center" spacing = "20">
+//       <img 
+//         src ={Logo}
+//         height = "50"
+//         // spacing = "50"
+//         onClick={() => { alert('getting there') }}
+//         //primary={true}
+//         // fullWidth ={true}
+//         style={{textAlign:"center", margin:"auto"}} >
+//         </img>
       
-    </Typography>
-  );
-}
+//     </Typography>
+//   );
+// }
 
 
 function validateEmail (email){
