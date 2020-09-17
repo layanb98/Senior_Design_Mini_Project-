@@ -118,6 +118,13 @@ import ButtonAppBar from './Header3'
     updates['/users/' + userId + '/' + newPostKey] = docInfo;
     firebase.database().ref().update(updates);
 
+         if (this.state.Coughing == "Yes" & this.state.Breathing == "Yes" || this.state.Smell_Taste == "Yes" || 
+    this.state.Smell_Taste == "Yes" &this.state.Fever == "Yes" &this.state.Coughing == "Yes" || this.state.Smell_Taste == "Yes" &this.state.Fever == "Yes" ||
+    this.state.Coughing == "Yes" & this.state.Fever == "Yes" ||this.state.Smell_Taste == "Yes" & this.state.Breathing == "Yes" 
+    ||this.state.Postive == "Yes" & this.state.Coughing == "Yes" || this.state.Positive == "Yes" &this.state.Smell_Taste == "Yes" ||
+    this.state.Positive == "Yes" &this.state.Fever == "Yes" &this.state.Coughing == "Yes"  ){
+      window.alert("You have the specific symptoms of Covid-19. You need to get Covid-19 tested!");
+    }
     }
     
     render(){
