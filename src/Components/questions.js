@@ -133,7 +133,7 @@ import ButtonAppBar from './Header3'
               <ButtonAppBar/>
               
               <Container component="main" maxWidth="xs" style={{ maxWidth: "60%", padding: "3%"}}>
-              <Typography  variant="h3" style={{textAlign:"center", margin:"auto"}}>
+              <Typography  variant="h3" style={{textAlign:"center", margin:"auto"}}> 
                    COVID-19 Questionarre
                   </Typography>
                   <Typography  variant="h5" style={{textAlign:"center", margin:"auto", padding: "3%"}}>
