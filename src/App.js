@@ -3,7 +3,7 @@ import './App.css';
 import SignUp from './Components/SignUp';
 import Questions from './Components/questions';
 import * as firebase from 'firebase';
-import {db_Logout} from './Components/DatabaseManager'
+//import {db_Logout} from './Components/DatabaseManager'
 
 
 
@@ -18,13 +18,13 @@ class App extends Component{
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         that.setState({user: 1});
-        console.log("there is a user");
-        console.log(user.uid);
+        //console.log("there is a user");
+        //console.log(user.uid);
         //db_Logout();
         return true;
       } else {
         that.setState({user: 0});
-        console.log("there is no user");
+        //console.log("there is no user");
         return false;
       }
     });

@@ -30,7 +30,7 @@ import ButtonAppBar from './Header3'
             Fever: event.currentTarget.value,
             // color: "secondary" 
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdateCoughing = (event) => {
       event.preventDefault()
@@ -38,7 +38,7 @@ import ButtonAppBar from './Header3'
             Coughing: event.currentTarget.value,
             // color: "secondary" 
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdateBreathing = (event) => {
       event.preventDefault()
@@ -46,7 +46,7 @@ import ButtonAppBar from './Header3'
           Breathing: event.currentTarget.value,
           // color: "secondary" 
       });
-      console.log(event.currentTarget.value);
+      // console.log(event.currentTarget.value);
     }
     UpdateSoreThroat = (event) => {
       event.preventDefault()
@@ -54,7 +54,7 @@ import ButtonAppBar from './Header3'
             SoreThroat: event.currentTarget.value,
             // color: "secondary" 
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdateSmell_Taste = (event) => {
       event.preventDefault()
@@ -62,7 +62,7 @@ import ButtonAppBar from './Header3'
             Smell_Taste: event.currentTarget.value,
             // color: "secondary"
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdateVomiting = (event) => {
       event.preventDefault()
@@ -70,7 +70,7 @@ import ButtonAppBar from './Header3'
             Vomiting: event.currentTarget.value,
             // color: "secondary"
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdateFatigue = (event) => {
       event.preventDefault()
@@ -78,7 +78,7 @@ import ButtonAppBar from './Header3'
             Fatigue: event.currentTarget.value,
             // color: "secondary"
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdateMuscleAche = (event) => {
       event.preventDefault()
@@ -86,7 +86,7 @@ import ButtonAppBar from './Header3'
             MuscleAche: event.currentTarget.value,
             // color: "secondary"
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     UpdatePositive = (event) => {
       event.preventDefault()
@@ -94,7 +94,7 @@ import ButtonAppBar from './Header3'
             Positive: event.currentTarget.value,
             // color: "secondary"
         });
-        console.log(event.currentTarget.value);
+        // console.log(event.currentTarget.value);
     }
     SubmitCovidAnswers =() =>{
 
@@ -110,7 +110,7 @@ import ButtonAppBar from './Header3'
         Positive: this.state.Positive
       };
     var userId = firebase.auth().currentUser.uid;
-    console.log("user" + userId);
+    //console.log("user" + userId);
     
     var newPostKey = firebase.database().ref().child('questionAns').push().key;
     var updates = {};
@@ -118,6 +118,13 @@ import ButtonAppBar from './Header3'
     updates['/users/' + userId + '/' + newPostKey] = docInfo;
     firebase.database().ref().update(updates);
 
+         if (this.state.Coughing == "Yes" & this.state.Breathing == "Yes" || this.state.Smell_Taste == "Yes" || 
+    this.state.Smell_Taste == "Yes" &this.state.Fever == "Yes" &this.state.Coughing == "Yes" || this.state.Smell_Taste == "Yes" &this.state.Fever == "Yes" ||
+    this.state.Coughing == "Yes" & this.state.Fever == "Yes" ||this.state.Smell_Taste == "Yes" & this.state.Breathing == "Yes" 
+    ||this.state.Postive == "Yes" & this.state.Coughing == "Yes" || this.state.Positive == "Yes" &this.state.Smell_Taste == "Yes" ||
+    this.state.Positive == "Yes" &this.state.Fever == "Yes" &this.state.Coughing == "Yes"  ){
+      window.alert("You have the specific symptoms of Covid-19. You need to get Covid-19 tested!");
+    }
     }
     
     render(){
